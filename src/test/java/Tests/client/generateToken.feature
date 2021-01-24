@@ -6,8 +6,8 @@ Feature: Generate Token
     * def creds =
     """
     {
-        "username":"test-user",
-        "password":"123456"
+        "username": #(__arg.username),
+        "password": #(__arg.password)
     }
     """
 
@@ -16,4 +16,3 @@ Feature: Generate Token
     And request creds
     When method post
     Then status 200
-    * def accessToken = response.accessToken

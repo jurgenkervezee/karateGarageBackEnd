@@ -2,10 +2,12 @@
 Feature: Test Client api's
 
   Background:
-    * url 'http://localhost:8080/clients'
+    * url baseurl + '/clients'
+#    * def authToken = "bearer " + access_token
+    * header Authorization = "bearer " + access_token
 
   Scenario: List all available clients and assert they a available
-    * def clientTemplate = read ('classpath:rescources/client-template.json')
+    * def clientTemplate = read ('classpath:Tests/rescources/client-template.json')
     Given path "/"
     When method get
     And match response == clientTemplate
