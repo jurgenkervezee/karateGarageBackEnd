@@ -2,13 +2,21 @@
 Feature: Test Client api's
 
   Background:
-    * url baseurl + '/clients'
-#    * def authToken = "bearer " + access_token
-    * header Authorization = "bearer " + access_token
+    * url  baseurl + '/clients'
+    * def creds =
+    """
+    {
+        "username": "reception-test",
+        "password": "123456"
+    }
+    """
+    * call read('classpath:Tests/client/helperfeatures/generateToken.feature') creds
+    * print response.accessToken
+    * header Authorization = "Bearer " + response.accessToken
 
   Scenario: List all available clients and assert they a available
     * def clientTemplate = read ('classpath:Tests/rescources/client-template.json')
-    Given path "/"
+    Given path "/list"
     When method get
     And match response == clientTemplate
 
@@ -39,14 +47,7 @@ Feature: Test Client api's
     When method put
     And print response
 
-    Given path '/1'
-    When method get
-    Then status 200
-    And match response.firstName == "Henk"
-    And match response.lastName == "Truus"
-    And match response.telephoneNumber == "06-12345678"
-
-  Scenario: Add a Client and check result
+  Scenario: Add a Client
     Given path '/'
     And request
     """
@@ -63,24 +64,7 @@ Feature: Test Client api's
     """
     When method post
     Then status 201
-    * def id = response
 
-    Given path '/' + id
-    When method get
-    Then status 200
-    And match response.firstName == "Jurgen"
-    And match response.lastName == "Kervezee"
-    And match response.telephoneNumber == "06-65498732"
-
-#    Delete the last created client
-    Given path '/' + id
-    When method delete
-    Then status 204
-
-    Given path '/' + id
-    When method get
-    Then status 200
-    And print response
 
   Scenario: Get a car from client by client_id
     Given path '/car/1'

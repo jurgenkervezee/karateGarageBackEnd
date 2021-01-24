@@ -6,10 +6,9 @@ function fn() {
   }
   var config = {
 
-    access_token: 'Henk',
-    baseurl: 'http://localhost:8080/api',
-    username: 'test-user',
-    password: '123456'
+
+    baseurl: 'http://localhost:8080/api'
+
 
   }
   if (env == 'dev') {
@@ -18,8 +17,9 @@ function fn() {
   } else if (env == 'e2e') {
     // customize
   }
-  var result = karate.callSingle('classpath:Tests/client/generateToken.feature', config);
-  config.access_token = result.response.accessToken;
+
+  // var result = karate.callSingle('classpath:Tests/client/generateToken.feature', config);
+  // config.access_token = result.response.accessToken;
 
   karate.configure('connectTimeout', 5000);
   karate.configure('readTimeout', 5000);

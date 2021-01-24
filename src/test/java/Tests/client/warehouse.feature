@@ -1,10 +1,19 @@
 Feature: Cars feature
 
   Background:
-    * url 'http://localhost:8080/carparts'
+    * url  baseurl + '/carparts'
+    * def creds =
+    """
+    {
+        "username": "warehouse-test",
+        "password": "123456"
+    }
+    """
+    * call read('classpath:Tests/client/helperfeatures/generateToken.feature') creds
+    * header Authorization = "Bearer " + response.accessToken
 
     Scenario: Get all carparts and stock amount
-      Given path ''
+      Given path '/list'
       When method get
       Then status 200
       And print response
