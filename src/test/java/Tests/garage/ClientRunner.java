@@ -1,4 +1,4 @@
-package Tests.client;
+package Tests.garage;
 
 import com.intuit.karate.KarateOptions;
 import com.intuit.karate.Results;
