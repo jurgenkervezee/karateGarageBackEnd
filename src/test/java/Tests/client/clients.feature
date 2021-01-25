@@ -34,7 +34,7 @@ Feature: Test Client api's
     Then status 200
     And match response.lastName        == "Anema"
 
-  Scenario: Update a Client and check the result
+  Scenario: Update a Client
     Given path '/1'
     And request
       """
