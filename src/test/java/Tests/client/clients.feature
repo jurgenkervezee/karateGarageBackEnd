@@ -65,7 +65,6 @@ Feature: Test Client api's
     When method post
     Then status 201
 
-
   Scenario: Get a car from client by client_id
     Given path '/car/1'
     When method get
@@ -73,3 +72,24 @@ Feature: Test Client api's
     And match response.model == "Zafira"
     And match response.brand == "Opel"
     And match response.numberPlate == "23-HG-35"
+
+  Scenario: Add an appointment for a carinspection
+    Given path '/appointment/1'
+    And request {"date": "2021-01-31"}
+    When method post
+    Then status 201
+    And match response == "1"
+
+  #Former scenario needs to run first if Scenario here under is to succeed
+  Scenario: Add a double appointment for a carinspection
+    Given path '/appointment/1'
+    And request {"date": "2021-01-31"}
+    When method post
+    Then status 409
+
+
+    # add a car to a client
+
+    # remove a car from a client
+
+    # remove an appointment

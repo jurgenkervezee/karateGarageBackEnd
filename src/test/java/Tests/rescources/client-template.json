@@ -2,19 +2,74 @@
   {
     "firstName": "Peter",
     "lastName": "Anema",
+    "cars": {
+      "model": "Zafira",
+      "id": 1,
+      "brand": "Opel",
+      "numberPlate": "23-HG-35"
+    },
     "telephoneNumber": "06-12345678",
+    "address": {
+      "streetName": "Spijkerstraat",
+      "homeTown": "Bussum",
+      "postalCode": "1400 XX",
+      "houseNumber": "2",
+      "id": 1,
+      "houseNumberAddition": "a"
+    },
+    "carinspections": [
+      {
+        "date": "2021-01-31T23:00:00.000+00:00",
+        "orderlines": [
+        ],
+        "id": 1
+      }
+    ],
     "id": 1
   },
   {
     "firstName": "Truus",
     "lastName": "Jansen",
+    "cars": {
+      "model": "Multipla",
+      "id": 2,
+      "brand": "Fiat",
+      "numberPlate": "12-HG-ZZ"
+    },
     "telephoneNumber": "06-87654321",
+    "address": {
+      "streetName": "Bijlstraat",
+      "homeTown": "Laren",
+      "postalCode": "1400 XX",
+      "houseNumber": "1",
+      "id": 2,
+      "houseNumberAddition": "b"
+    },
+    "carinspections": [
+      {
+        "date": "2021-02-28T23:00:00.000+00:00",
+        "orderlines": [
+        ],
+        "id": 2
+      }
+    ],
     "id": 2
   },
   {
     "firstName": "Jan",
     "lastName": "Jansen",
+    "cars": null,
     "telephoneNumber": "06-12348765",
+    "address": {
+      "streetName": "Hamerstraat",
+      "homeTown": "Bussum",
+      "postalCode": "1400 XX",
+      "houseNumber": "2",
+      "id": 3,
+      "houseNumberAddition": "a"
+    },
+    "carinspections": [
+    ],
     "id": 3
   }
 ]
