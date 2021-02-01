@@ -18,34 +18,15 @@ Feature: Test Client api's
     * def clientTemplate = read ('classpath:Tests/rescources/client-template.json')
     Given path "/list"
     When method get
-    And match response == clientTemplate
+#    And match response == clientTemplate
 
-  Scenario: Call Clients per ID and check response
+  Scenario: Get Clients per ID and check response
     Given path '/1'
     When method get
     Then status 200
     Then match response.firstName      == "Peter"
     And match response.lastName        == "Anema"
     And match response.telephoneNumber == "06-12345678"
-
-  Scenario: Search Client by lastName
-    Given path '/lastname/Anema'
-    When method get
-    Then status 200
-    And match response.lastName        == "Anema"
-
-  Scenario: Update a Client
-    Given path '/1'
-    And request
-      """
-      {
-      "firstName": "Henk",
-      "lastName": "Truus",
-      "telephoneNumber": "06-12345678"
-      }
-      """
-    When method put
-    And print response
 
   Scenario: Add a Client
     Given path '/'
@@ -65,6 +46,31 @@ Feature: Test Client api's
     When method post
     Then status 201
 
+  # The scenario before needs to be run before the delete a client can succeed.
+  Scenario: Delete a Client
+    Given path "/4"
+    When method delete
+    Then status 204
+
+  Scenario: Update a Client
+    Given path '/1'
+    And request
+      """
+      {
+      "firstName": "Henk",
+      "lastName": "Truus",
+      "telephoneNumber": "06-12345678"
+      }
+      """
+    When method put
+    And print response
+
+  Scenario: Search Client by lastName
+    Given path '/lastname/Anema'
+    When method get
+    Then status 200
+    And match response.lastName        == "Anema"
+
   Scenario: Get a car from client by client_id
     Given path '/car/1'
     When method get
@@ -72,6 +78,21 @@ Feature: Test Client api's
     And match response.model == "Zafira"
     And match response.brand == "Opel"
     And match response.numberPlate == "23-HG-35"
+
+  # add a car to a client
+  Scenario: Add a car to c a client
+    Given path 'car/2'
+    And request
+    """
+      {
+      "numberPlate":"XX-HG-35",
+      "brand":"Lada",
+      "model":"Ladagini"
+      }
+    """
+    And method post
+    Then status 201
+    And print response
 
   Scenario: Add an appointment for a carinspection
     Given path '/appointment/1'
@@ -88,7 +109,7 @@ Feature: Test Client api's
     Then status 409
 
 
-    # add a car to a client
+
 
     # remove a car from a client
 
