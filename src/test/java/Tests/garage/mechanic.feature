@@ -9,7 +9,7 @@ Feature: Test the
         "password": "123456"
     }
     """
-    * call read('classpath:Tests/client/helperfeatures/generateToken.feature') creds
+    * call read('classpath:Tests/garage/helperfeatures/generateToken.feature') creds
     * print response.accessToken
     * header Authorization = "Bearer " + response.accessToken
 

@@ -9,7 +9,7 @@ Feature: Cars feature
         "password": "123456"
     }
     """
-    * call read('classpath:Tests/client/helperfeatures/generateToken.feature') creds
+    * call read('classpath:Tests/garage/helperfeatures/generateToken.feature') creds
     * header Authorization = "Bearer " + response.accessToken
 
     ## when you run this feature you need to restart the backend to get the data in the database at the starting position.
@@ -39,7 +39,7 @@ Feature: Cars feature
       * def newStockAmount = initialStockAmount + 5
 
       Given path 'updatestock/4/' + newStockAmount
-      * call read('classpath:Tests/client/helperfeatures/generateToken.feature') creds
+      * call read('classpath:Tests/garage/helperfeatures/generateToken.feature') creds
       * header Authorization = "Bearer " + response.accessToken
       And request ''
       When method put
@@ -47,7 +47,7 @@ Feature: Cars feature
       And print response
 
       Given path '/4'
-      * call read('classpath:Tests/client/helperfeatures/generateToken.feature') creds
+      * call read('classpath:Tests/garage/helperfeatures/generateToken.feature') creds
       * header Authorization = "Bearer " + response.accessToken
       When method get
       Then status 200
