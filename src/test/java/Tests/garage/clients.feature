@@ -95,22 +95,26 @@ Feature: Test Client api's
     And print response
 
   Scenario: Add an appointment for a carinspection
-    Given path '/appointment/1'
-    And request {"date": "2021-01-31"}
+    Given path '/appointment/2'
+    And request {"date": "2021-02-11"}
     When method post
     Then status 201
-    And match response == "1"
+    And match response == "2"
 
   #Former scenario needs to run first if Scenario here under is to succeed
   Scenario: Add a double appointment for a carinspection
     Given path '/appointment/1'
-    And request {"date": "2021-01-31"}
+    And request {"date": "2021-02-11"}
     When method post
     Then status 409
 
+  # remove an appointment
+  Scenario: Delete an appointment
+  Given path '/appointment/remove/1'
+  When method delete
+  Then status 204
 
 
 
     # remove a car from a client
 
-    # remove an appointment
