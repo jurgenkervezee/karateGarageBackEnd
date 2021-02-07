@@ -20,23 +20,30 @@ Feature: Test the
     And print response
 
   Scenario: Get an appointment by ID
-    Given path '/1'
+    Given path '/appointmentid/1'
     And method get
     Then status 200
     And print response
 
     Scenario: Add a carpart to a carinspection by id
-      Given path '/2/carpart/3/amount/2'
+      Given path '/carinspectionid/2/carpart/3/amount/2'
       And request ''
       And method post
       Then status 204
       And print response
 
+  Scenario: Add a repairactivity to a carinspection by id
+    Given path '/carinspectionid/2/repairactivity/6/amount/2'
+    And request ''
+    And method post
+    Then status 204
+    And print response
+
     Scenario: Add a custom activity to a carinspection by id
-      Given path '2/custom'
+      Given path '/carinspectionid/2/custom'
       And request { "amount": 3, "description": "Lucht voor de banden", "price": 2.50 }
       And method post
-      Then status 200
+      Then status 204
 
     Scenario: Get client data from a carinspection
       Given path 'clientdetails/2'

@@ -81,7 +81,7 @@ Feature: Test Client api's
 
   # add a car to a client
   Scenario: Add a car to c a client
-    Given path 'car/2'
+    Given path 'car/3'
     And request
     """
       {
@@ -103,16 +103,16 @@ Feature: Test Client api's
 
   #Former scenario needs to run first if Scenario here under is to succeed
   Scenario: Add a double appointment for a carinspection
-    Given path '/appointment/1'
+    Given path '/appointment/2'
     And request {"date": "2021-02-11"}
     When method post
     Then status 409
 
-  # remove an appointment
-  Scenario: Delete an appointment
-  Given path '/appointment/remove/1'
-  When method delete
-  Then status 204
+#  # remove an appointment
+#  Scenario: Delete an appointment
+#  Given path '/appointment/remove/1'
+#  When method delete
+#  Then status 204
 
 
 
