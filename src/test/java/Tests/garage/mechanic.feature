@@ -55,12 +55,12 @@ Feature: Test the
       And match response.telephoneNumber == "06-12348765"
 
   Scenario Outline: add multiple carparts <carpart> to a carinspection
-    Given path '/' +<ID> + ' /carpart/' + <carpart> + '/amount/' + <amount>
+    Given path '/carinspectionid/' +<id> + ' /carpart/' + <carpart> + '/amount/' + <amount>
     And request ''
     And method post
     Then status 204
     Examples:
-    | ID | carpart | amount |
+    | id | carpart | amount |
     | 1  | 2       | 1      |
     | 1  | 1       | 1      |
     | 1  | 3       | 1      |
@@ -68,17 +68,25 @@ Feature: Test the
     | 1  | 5       | 1      |
     | 2  | 6       | 1      |
     | 2  | 1       | 2      |
+    | 2  | 2       | 2      |
 
     Scenario: Get total price for a repair
-      Given path '/repairprice/1'
+      Given path '/repairprice/2'
       When method get
       Then status 200
       And print response
 
     Scenario: Declinerepair and give back the new price for the carinspection
-      Given path 'declinerepair/1'
+      Given path '/declinerepair/1'
       And request ""
       When method post
       Then status 200
       And match response == "45.0"
+      And print response
+
+    Scenario: RepairCar and change status to REPAIRED
+      Given path '/repaircar/carinspectionid/2'
+      And request ''
+      When method post
+      Then status 200
       And print response

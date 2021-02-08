@@ -108,13 +108,4 @@ Feature: Test Client api's
     When method post
     Then status 409
 
-#  # remove an appointment
-#  Scenario: Delete an appointment
-#  Given path '/appointment/remove/1'
-#  When method delete
-#  Then status 204
-
-
-
-    # remove a car from a client
 
