@@ -81,7 +81,7 @@ Feature: Test the
       And request ""
       When method post
       Then status 200
-      And match response == "45.0"
+      And match response == "53.55"
       And print response
 
     Scenario: RepairCar and change status to REPAIRED
