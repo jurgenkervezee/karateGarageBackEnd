@@ -22,7 +22,7 @@ Feature: Test payment api's
     And print response
 
   Scenario: get all orderline from carinspection and total price
-    Given path 'carinspectionid/1'
+    Given path 'carinspectionid/2'
     And method get
     Then status 200
     And print response

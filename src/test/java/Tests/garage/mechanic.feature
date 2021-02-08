@@ -72,18 +72,39 @@ Feature: Test the carinspection
     And method post
     Then status <status>
     Examples:
-    | id | carpart | amount | status|
-    | 1  | 2       | 1      | 204   |
-    | 1  | 1       | 1      | 204   |
-    | 1  | 3       | 1      | 204   |
-    | 1  | 4       | 2      | 204   |
-    | 1  | 5       | 1      | 204   |
-    | 2  | 6       | 1      | 204   |
-    | 2  | 1       | 2      | 204   |
-    | 2  | 2       | 2      | 204   |
-    | 999| 1       | 1      | 404   |
-    | 3  | 999     | 1      | 404   |
-    | 3  | 1       | 0      | 404   |
+      | id  | carpart | amount | status |
+      | 1   | 2       | 1      | 204    |
+      | 1   | 1       | 1      | 204    |
+      | 1   | 3       | 1      | 204    |
+      | 1   | 4       | 2      | 204    |
+      | 1   | 5       | 1      | 204    |
+      | 2   | 6       | 1      | 204    |
+      | 2   | 1       | 2      | 204    |
+      | 2   | 2       | 2      | 204    |
+      | 999 | 1       | 1      | 404    |
+      | 3   | 999     | 1      | 404    |
+      | 3   | 1       | 0      | 404    |
+
+
+  Scenario Outline: add <id> multiple Repairactivity: <repairactivity>  Amount: <amount> Status: <status>
+    Given path '/carinspectionid/' +<id> + ' /repairactivity/' + <repairactivity> + '/amount/' + <amount>
+    And request ''
+    And method post
+    Then status <status>
+    Examples:
+      | id  | repairactivity | amount | status |
+      | 1   | 1              | 1      | 204    |
+      | 1   | 2              | 1      | 204    |
+      | 1   | 3              | 1      | 204    |
+      | 1   | 4              | 2      | 204    |
+      | 1   | 5              | 1      | 204    |
+      | 2   | 6              | 1      | 204    |
+      | 2   | 1              | 2      | 204    |
+      | 2   | 2              | 2      | 204    |
+      | 999 | 1              | 1      | 404    |
+      | 3   | 999            | 1      | 404    |
+      | 3   | 1              | 0      | 404    |
+
 
     Scenario: Get total price for a repair
       Given path '/repairprice/2'
