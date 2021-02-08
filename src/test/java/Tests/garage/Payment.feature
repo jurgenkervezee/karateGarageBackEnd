@@ -15,8 +15,14 @@ Feature: Test payment api's
     * header Authorization = "Bearer " + response.accessToken
 
 
-    Scenario: get all orderline from carinspection
-      Given path 'carinspection/1'
-      And method get
-      Then status 200
-      And print response
+  Scenario: get all orderline from carinspection
+    Given path 'carinspection/1'
+    And method get
+    Then status 200
+    And print response
+
+  Scenario: get all orderline from carinspection and total price
+    Given path 'carinspectionid/1'
+    And method get
+    Then status 200
+    And print response

@@ -50,7 +50,7 @@ Feature: Test the
       And method get
       Then status 200
       And print response
-      And match response.firstName == "Jan"
+      And match response.firstName == "Henk"
       And match response.lastName == "Jansen"
       And match response.telephoneNumber == "06-12348765"
 
