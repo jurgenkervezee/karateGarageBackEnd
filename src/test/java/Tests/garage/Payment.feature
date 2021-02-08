@@ -1,12 +1,12 @@
 @smoke
-Feature: Test reparation api's
+Feature: Test payment api's
 
   Background:
-    * url  baseurl + '/reparation'
+    * url  baseurl + '/payment'
     * def creds =
     """
     {
-        "username": "mechanic-test",
+        "username": "cashier-test",
         "password": "123456"
     }
     """
@@ -14,4 +14,9 @@ Feature: Test reparation api's
     * print response.accessToken
     * header Authorization = "Bearer " + response.accessToken
 
-    Scenario: test-test
+
+    Scenario: get all orderline from carinspection
+      Given path 'carinspection/1'
+      And method get
+      Then status 200
+      And print response
