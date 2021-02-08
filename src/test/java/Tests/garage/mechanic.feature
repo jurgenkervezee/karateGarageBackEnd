@@ -1,4 +1,5 @@
-Feature: Test the
+@smoke
+Feature: Test the carinspection
 
   Background:
     * url baseurl + '/inspections'
@@ -25,12 +26,23 @@ Feature: Test the
     Then status 200
     And print response
 
+  Scenario: List all available Carparts
+    Given path '/carparts/list'
+    When method get
+    Then status 200
+
+
     Scenario: Add a carpart to a carinspection by id
       Given path '/carinspectionid/2/carpart/3/amount/2'
       And request ''
       And method post
       Then status 204
       And print response
+
+  Scenario: List all available repairactivities
+    Given path '/repairactivity/list'
+    When method get
+    Then status 200
 
   Scenario: Add a repairactivity to a carinspection by id
     Given path '/carinspectionid/2/repairactivity/6/amount/2'
@@ -52,23 +64,26 @@ Feature: Test the
       And print response
       And match response.firstName == "Henk"
       And match response.lastName == "Henksen"
-      And match response.telephoneNumber == "06-12348765"
+      And match response.telephoneNumber == "06-12389738"
 
-  Scenario Outline: add multiple carparts <carpart> to a carinspection
+  Scenario Outline: add <id> multiple carpart: <carpart>  Amount: <amount> Status: <status>
     Given path '/carinspectionid/' +<id> + ' /carpart/' + <carpart> + '/amount/' + <amount>
     And request ''
     And method post
-    Then status 204
+    Then status <status>
     Examples:
-    | id | carpart | amount |
-    | 1  | 2       | 1      |
-    | 1  | 1       | 1      |
-    | 1  | 3       | 1      |
-    | 1  | 4       | 2      |
-    | 1  | 5       | 1      |
-    | 2  | 6       | 1      |
-    | 2  | 1       | 2      |
-    | 2  | 2       | 2      |
+    | id | carpart | amount | status|
+    | 1  | 2       | 1      | 204   |
+    | 1  | 1       | 1      | 204   |
+    | 1  | 3       | 1      | 204   |
+    | 1  | 4       | 2      | 204   |
+    | 1  | 5       | 1      | 204   |
+    | 2  | 6       | 1      | 204   |
+    | 2  | 1       | 2      | 204   |
+    | 2  | 2       | 2      | 204   |
+    | 999| 1       | 1      | 404   |
+    | 3  | 999     | 1      | 404   |
+    | 3  | 1       | 0      | 404   |
 
     Scenario: Get total price for a repair
       Given path '/repairprice/2'

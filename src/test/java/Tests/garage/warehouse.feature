@@ -1,3 +1,4 @@
+@smoke
 Feature: Cars feature
 
   Background:
@@ -70,10 +71,9 @@ Feature: Cars feature
     And print response
 
   Scenario: Delete the carpart by ID
-    Given path '/carparts/delete/2'
+    Given path '/carparts/delete/6'
     When method delete
     Then status 200
-
 
   Scenario: Get all repairactivity
     Given path '/repairactivity/list'
@@ -85,7 +85,7 @@ Feature: Cars feature
     Given path '/repairactivity/3'
     When method get
     Then status 200
-    And match response == {"id":3,"description":"Velgen vervangen","price":25.0}
+    And match response == {"id":3,"description":"Luchtfilter vervangen","price":50.0}
 
   Scenario: Get a repairactivity by id id not found
     Given path '/repairactivity/999'
@@ -106,7 +106,7 @@ Feature: Cars feature
     And print response
 
   Scenario: Delete the repairactivity by ID
-    Given path '/repairactivity/delete/2'
+    Given path '/repairactivity/delete/5'
     When method delete
     Then status 200
 
