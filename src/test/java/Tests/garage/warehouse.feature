@@ -2,7 +2,7 @@
 Feature: Cars feature
 
   Background:
-    * url  baseurl
+    * url  baseurl + '/warehouse'
     * def creds =
     """
     {
