@@ -18,6 +18,7 @@ Feature: Test Client api's
     * def clientTemplate = read ('classpath:Tests/rescources/client-template.json')
     Given path "/list"
     When method get
+    And print response
 #    And match response == clientTemplate
 
   Scenario: Get Clients per ID and check response
@@ -27,6 +28,7 @@ Feature: Test Client api's
     Then match response.firstName      == "Peter"
     And match response.lastName        == "Anema"
     And match response.telephoneNumber == "06-12345678"
+    And print response
 
   Scenario: Add a Client
     Given path '/'

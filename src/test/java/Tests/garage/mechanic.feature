@@ -126,3 +126,9 @@ Feature: Test the carinspection
       When method post
       Then status 200
       And print response
+
+  Scenario: Assert that the clients api is not available for the mechanic
+    Given url "http://localhost:8080/api/clients/list"
+    When method get
+    Then status 403
+    And print response
