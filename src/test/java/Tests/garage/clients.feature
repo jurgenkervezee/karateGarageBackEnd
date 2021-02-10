@@ -108,4 +108,8 @@ Feature: Test Client api's
     When method post
     Then status 409
 
+  Scenario: clientstocall list
+    Given path '/clientstocall/list'
+    When method get
+    Then print response
 
