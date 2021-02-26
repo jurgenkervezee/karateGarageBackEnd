@@ -64,14 +64,15 @@ Feature: Test Client api's
       "telephoneNumber": "06-12345678"
       }
       """
-    When method put
+    When method post
     And print response
+    Then status 200
 
   Scenario: Search Client by lastName
-    Given path '/lastname/Anema'
+    Given path '/lastname/Henksen'
     When method get
     Then status 200
-    And match response.lastName        == "Anema"
+    And match response.firstName        == "Henk"
 
   Scenario: Get a car from client by client_id
     Given path '/car/1'
@@ -110,4 +111,7 @@ Feature: Test Client api's
     When method post
     Then status 409
 
-
+  Scenario: testlist telephonelist
+    Given path 'clientstocall/list'
+    And method get
+    Then print response

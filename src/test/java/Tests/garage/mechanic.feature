@@ -30,6 +30,7 @@ Feature: Test the carinspection
     Given path '/carparts/list'
     When method get
     Then status 200
+    And match response[0].description == "Stuurhuis"
 
 
     Scenario: Add a carpart to a carinspection by id
@@ -111,6 +112,7 @@ Feature: Test the carinspection
       When method get
       Then status 200
       And print response
+      And match response == '3231.79'
 
     Scenario: Declinerepair and give back the new price for the carinspection
       Given path '/declinerepair/1'

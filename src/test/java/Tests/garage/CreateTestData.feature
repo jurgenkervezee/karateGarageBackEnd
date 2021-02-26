@@ -1,2 +1,0 @@
-@ignore
-Feature: Test

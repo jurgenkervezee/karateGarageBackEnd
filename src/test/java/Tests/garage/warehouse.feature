@@ -2,7 +2,7 @@
 Feature: Cars feature
 
   Background:
-    * url  baseurl
+    * url  baseurl + '/warehouse'
     * def creds =
     """
     {
@@ -34,7 +34,7 @@ Feature: Cars feature
     Then status 404
 
   Scenario: Get stock and update stock amount with +5 also assert stockamount
-    Given path '/carparts//4'
+    Given path '/carparts/4'
     When method get
     * def initialStockAmount = response.stockAmount
     * def newStockAmount = initialStockAmount + 5
