@@ -3,7 +3,6 @@ package Tests;
 import com.intuit.karate.KarateOptions;
 import com.intuit.karate.Results;
 import com.intuit.karate.Runner;
-import com.intuit.karate.junit5.Karate;
 import net.masterthought.cucumber.Configuration;
 import net.masterthought.cucumber.ReportBuilder;
 import org.apache.commons.io.FileUtils;
@@ -19,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 //  Running using Terminal
 //  mvn clean test -Dkarate.options="--tags @smoke" -Dtest=GarageRunner.java
 //  After running from Terminal you can see the report in: target/cucumber-html-reports/overview-failures.html
+//  Please be mindfull that the Karate tests very fast and it may get some errors while testing it all at once
 
 @KarateOptions(tags = { "@smoke", "@alltests", "~@ignore" }) // important: do not use @RunWith(Karate.class) !
 class GarageRunner {
@@ -37,7 +37,7 @@ class GarageRunner {
         Collection<File> jsonFiles = FileUtils.listFiles(new File(karateOutputPath), new String[] { "json" }, true);
         List<String> jsonPaths = new ArrayList<>(jsonFiles.size());
         jsonFiles.forEach(file -> jsonPaths.add(file.getAbsolutePath()));
-        Configuration config = new Configuration(new File("target"), "demo");
+        Configuration config = new Configuration(new File("target"), "garagerBackend");
         ReportBuilder reportBuilder = new ReportBuilder(jsonPaths, config);
         reportBuilder.generateReports();
     }
