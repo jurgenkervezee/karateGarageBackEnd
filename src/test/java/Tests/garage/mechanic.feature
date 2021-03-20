@@ -21,7 +21,7 @@ Feature: Test the carinspection
     And print response
 
   Scenario: Get an appointment by ID
-    Given path '/appointmentid/1'
+    Given path '/appointmentid/7'
     And method get
     Then status 200
     And print response
@@ -112,10 +112,10 @@ Feature: Test the carinspection
       When method get
       Then status 200
       And print response
-      And match response == '3231.79'
+      And match response == '3243.69'
 
     Scenario: Declinerepair and give back the new price for the carinspection
-      Given path '/declinerepair/1'
+      Given path '/declinerepair/5'
       And request ""
       When method post
       Then status 200

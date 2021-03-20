@@ -18,6 +18,7 @@ Feature: Test Client api's
     * def clientTemplate = read ('classpath:Tests/rescources/client-template.json')
     Given path "/list"
     When method get
+    Then status 200
     And print response
 #    And match response == clientTemplate
 
@@ -114,4 +115,5 @@ Feature: Test Client api's
   Scenario: testlist telephonelist
     Given path 'clientstocall/list'
     And method get
-    Then print response
+    Then status 200
+    And print response
